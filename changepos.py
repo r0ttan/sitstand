@@ -19,7 +19,10 @@ class Application(tk.Frame):
         tk.Frame.__init__(self, master)
         self.pack()
         self.createWidgets()
-        
+#########################################
+# Master branch
+#########################################
+
     def createWidgets(self):
         """Make stuff visible on root and canvas"""
         self.start_b = tk.Button(root, text="On/Off", command=self.onofftoggle)
