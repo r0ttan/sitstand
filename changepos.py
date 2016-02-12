@@ -6,12 +6,12 @@ class Application(tk.Frame):
     def __init__(self, master=None):
         self.pos = 1 #start sitting, increment timerd
         self.onoff = 0 #start off
-        self.totalt = 0
+        self.totalt = 0 #total time app been on
         self.allday = 21600 #6h = 21600s
-        self.timeru = 0
-        self.timerd = 0
+        self.timeru = 0 #time standing
+        self.timerd = 0 #time sitting
 
-        self.timerudig = tk.StringVar()
+        self.timerudig = tk.StringVar() #for dynamic change of tk.labels
         self.timerddig = tk.StringVar()
         self.timerustr = tk.StringVar()
         self.timerdstr = tk.StringVar()
@@ -21,6 +21,7 @@ class Application(tk.Frame):
         self.createWidgets()
         
     def createWidgets(self):
+        """Make stuff visible on root and canvas"""
         self.start_b = tk.Button(root, text="On/Off", command=self.onofftoggle)
         self.toggle_b = tk.Button(root, text="Sit/Stand", command=self.togglepos)
         self.start_b.pack(expand=1, fill=tk.BOTH, side=tk.BOTTOM)
@@ -57,6 +58,7 @@ class Application(tk.Frame):
         self.ticker()
         
     def onofftoggle(self):
+        """Called from on/off button"""
         self.onoff = 1 if self.onoff == 0 else 0
         if self.onoff == 1:
             self.start_b.configure(bg="#000fff000")
@@ -64,6 +66,7 @@ class Application(tk.Frame):
             self.start_b.configure(bg="#f00f00f00")
         
     def togglepos(self):
+        """called from Stand/Sit button"""
         self.pos = 1 if self.pos == 0 else 0
         if self.pos == 1:
             self.dtlbl.config(bg="#000fff000")
@@ -98,7 +101,7 @@ class Application(tk.Frame):
             self.timerustr.set(int(self.timeru/self.totalt*100))
             self.timerudig.set(round(self.timeru/self.allday*100, 2))
             print(ulinecoord, dlinecoord)
-        self._tick = self.after(1000, self.ticker)
+        self._tick = self.after(1000, self.ticker)#call itself every 1s
 
 
 root = tk.Tk()
