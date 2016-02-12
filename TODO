@@ -1,0 +1,6 @@
+Changepos TODO:
+
+Pythonify - make lists, minimize code repetition.
+
+add params to class - allday - read from args
+serialize result in pickle or json file for external stats and/or resume after comp restart
